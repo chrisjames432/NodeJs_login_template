@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LANDING PAGE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./client/css/main.css">
+</head>
+
+<body>
+
+<div class="container bdr">
+    <div class="main bdr">
+        <a class='bdr' href="">
+            <h1>Your landing page</h1>
+        </a>
+
+        <div class="center-container bdr">
+            <div class="nav-container">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a id='signup' class="nav-link " href="#">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id='login' class="nav-link" href="#">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id='about' class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="form1" class="bdr w1">
+            <center><h3 id='messagediv'>Please Sign Up</h3></center>
+            <hr>
+            <form role="form" class="bdr">
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password    </label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="form-group" id="repeatPasswordDiv">
+                    <label for="inputRepeatPassword">Repeat Password</label>
+                    <input type="password" class="form-control" id="repeatPassword">
+                </div>
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                </div>
+                <button type="button" id='submit' class="btn btn-primary">
+                    Sign Up
+                </button>
+                <div id="reset-password-link" style="padding: 0px; padding-top:30px; border:0px solid black;">
+                    <a href="#" id="resetPassword">Forgot your password?</a>
+                </div>
+                <div id="message" style="padding: 10px; font-size:11px">
+                    
+                </div>
+             
+            </form>
+        </div>
+    </div>
+</div>
+<script src="./client/js/main.js"></script>
+
+</body>
+</html>

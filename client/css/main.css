@@ -1,0 +1,78 @@
+body {
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.main {
+  max-width: 450px;
+  border: 0px solid black;
+  margin: 0 auto; /* Centers the .main container horizontally */
+  display: flex; /* Add this */
+  flex-direction: column; /* Add this */
+  align-items: center; /* Add this to center child elements horizontally */
+}
+
+form {
+  width: 100%; /* Full width of the parent */
+  max-width: 360px; /* Optional: limit the maximum width */
+  border: 0px solid black;
+  padding: 10px;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+#messagediv {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.bdr {
+  border: 0px solid black;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.nav-container {
+  text-align: center;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 20px; /* Adjusted margin for spacing */
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 2.0rem;
+  color: black;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.main img {
+  display: block;
+  margin: 0 auto; /* Centers the image horizontally */
+}
+
+
+#form1 {
+  display: none; /* This hides the div by default */
+}

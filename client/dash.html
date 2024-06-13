@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./client/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1>Welcome to Your Dashboard</h1>
+            <p>Hello, <span id="userEmail"></span>!</p>
+            <p>Welcome to your dashboard. Here you can manage your account, view exclusive content, and much more.</p>
+            <button id="logout" class="btn btn-primary">Log Out</button>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // Fetch user data from session or backend
+            $.ajax({
+                type: "GET",
+                url: "/user",
+                contentType: "application/json",
+                success: function(response) {
+                    if (response.error) {
+                        window.location.href = "/";
+                    } else {
+                        $("#userEmail").text(response.email);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error);
+                    window.location.href = "/";
+                }
+            });
+
+            // Handle logout
+            $("#logout").click(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "/logout",
+                    success: function(response) {
+                        window.location.href = "/";
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
