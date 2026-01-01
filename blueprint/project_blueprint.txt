@@ -1,0 +1,139 @@
+================================================================================
+PROJECT BLUEPRINT
+================================================================================
+
+MASTER PROJECT SUMMARY
+--------------------------------------------------------------------------------
+**PROJECT OVERVIEW**  
+A Node.js template that implements a basic authentication system (signup, login, email verification, password reset, session handling) with a simple dashboard, using Express and MongoDB.
+
+**KEY FEATURES**  
+- User registration with email‑verification tokens  
+- Login with cookie‑based sessions  
+- Password‑reset workflow via email links  
+- Dashboard page showing the logged‑in user’s email  
+- IP‑visit tracking (`checkip.js`)  
+- Minimal UI built with Bootstrap, plus email sending via Nodemailer.
+
+**ARCHITECTURE**  
+- **Server side:** `app.js` (Express routes, CORS, static serving), `mongologin.js` (MongoDB user ops), `email.js` (Nodemailer), `checkip.js` (IP logging).  
+- **Client side:** static `client/` folder containing HTML pages, CSS, and `main.js` for AJAX UI handling.  
+- **Data store:** MongoDB collections for users, verification/reset tokens, and visited‑pages logs.  
+
+**HOW IT WORKS**  
+1. Front‑end forms send AJAX POSTs to `/signup`, `/login`, `/request-password-reset`, or `/reset-password`.  
+2. The server validates input, hashes passwords, creates/updates MongoDB records, and sends verification or reset emails.  
+3. Successful login creates a session cookie; the dashboard fetches the user’s email via `/user`.  
+4. Each page load records the client IP and timestamp in the `visited_pages` collection.
+
+**TECHNOLOGIES**  
+Node.js, Express, MongoDB (native driver), bcrypt (password hashing), Nodemailer, cookie‑parser, cors, body‑parser, Bootstrap (CSS), vanilla JavaScript, and a Python helper script (`makegen.py`) for documentation generation.
+
+
+================================================================================
+FILE TREE STRUCTURE
+================================================================================
+
+NodeJs_login_template/
+ client/
+    css/
+       main.css
+    Fonts/
+       verah.ttf
+       verahb.ttf
+       verahbi_.ttf
+       verahi__.ttf
+    js/
+       main.js
+    dash.html
+    index.html
+    reset-password.html
+ project_goals/
+    changelog.txt
+    goal.txt
+    goals.txt
+ .gitignore
+ app.js
+ checkip.js
+ email.js
+ info.txt
+ makegen.py
+ mongologin.js
+ package-lock.json
+ package.json
+ README.md
+ status.md
+
+
+================================================================================
+FILE DESCRIPTIONS
+================================================================================
+
+.gitignore
+  Description: The file is a .gitignore that instructs Git to ignore typical Node.js development artifacts—logs, temporary files, caches, build outputs, dependency folders (e.g., node_modules), environment files, and other generated or IDE‑specific files—so they aren’t tracked in the repository.
+
+README.md
+  Description: The README documents a Node.js application that implements a basic login system (signup, login, email verification, password reset, session handling, and dashboard access) using Express and MongoDB. It includes setup instructions, project structure, and licensing details.
+
+app.js
+  Description: This script creates an Express server that serves the client UI and implements API routes for user signup (with email verification), login (with session handling), password‑reset requests, and dashboard access, using MongoDB for user data and sending confirmation/reset emails. It also configures CORS, body parsing, cookies, and static file serving.
+
+checkip.js
+  Description: The script records a page visit by extracting the client’s IP address, adding a timestamp, and upserting this data into a MongoDB collection (`visited_pages`) for tracking visits per IP. It handles MongoDB connection, IP parsing, and error logging.
+
+client\Fonts\verah.ttf
+  Description: Font file.
+
+client\Fonts\verahb.ttf
+  Description: Font file.
+
+client\Fonts\verahbi_.ttf
+  Description: Font file.
+
+client\Fonts\verahi__.ttf
+  Description: Font file.
+
+client\css\main.css
+  Description: This CSS styles the login page by setting a white background, centering the main container with flexbox, and defining responsive widths and spacing for forms, images, and navigation elements. It also includes basic visual tweaks such as margin, padding, and hover effects for links.
+
+client\dash.html
+  Description: A simple dashboard page that loads the logged‑in user’s email via an AJAX GET to “/user” and displays a welcome message, and includes a button that logs the user out by sending a POST to “/logout”.
+
+client\index.html
+  Description: This HTML file renders a simple landing page for the Node.js login template, displaying navigation links (Sign up, Log in, About) and a sign‑up form (email, password, repeat password, remember‑me checkbox, and a “Forgot your password?” link) styled with Bootstrap.
+
+client\js\main.js
+  Description: This script manages the client‑side authentication UI: it toggles between login, signup, and password‑reset forms, sends the entered data via AJAX to the server’s `/login`, `/signup`, and `/request-password-reset` endpoints, and redirects or displays messages based on the responses, also checking on load whether the user is already logged in.
+
+client\reset-password.html
+  Description: This HTML page provides a “Reset Password” form that validates matching passwords, extracts a reset token from the URL, sends the new password and token via AJAX to the server’s /reset‑password endpoint, and displays success or error messages before redirecting to the login page.
+
+email.js
+  Description: The file configures a Nodemailer transporter with credentials from environment variables and exports an asynchronous `sendConfirmationEmail` function that sends an email (logging success or errors) using that transporter.
+
+info.txt
+  Description: The file lists basic metadata for the NodeJs_login_template repository, showing its name, a placeholder description, and the creation date (2024‑08‑22).
+
+makegen.py
+  Description: The script builds a markdown file (`program_structure.md`) that first lists a formatted directory tree for a set of specified project files, then appends the full contents of each of those files beneath the tree.
+
+mongologin.js
+  Description: This module provides MongoDB‑based user management functions—creating users with hashed passwords, checking existence, verifying email tokens, handling password‑reset tokens, and authenticating passwords—while exposing these utilities for use elsewhere in the app.
+
+package-lock.json
+  Description: Dependency lock file - ensures consistent package versions.
+
+package.json
+  Description: The package.json defines a Node.js project (named “python‑alpaca”) with its metadata, scripts, and a list of required npm dependencies such as Express, MongoDB, Alpaca API, authentication, and utility libraries needed for the login template.
+
+project_goals\changelog.txt
+  Description: The file is a changelog that records a “Shuffle_UPDATE” entry dated 2024‑06‑23 (the same entry appears multiple times).
+
+project_goals\goal.txt
+  Description: The file records a project goal: to implement a socket connection.
+
+project_goals\goals.txt
+  Description: The file is a simple placeholder noting that it has just been created, serving as an update or tracking marker.
+
+status.md
+  Description: The file is a status report that reviews a Node.js login template, praising its solid authentication implementation while pinpointing critical security flaws (e.g., hard‑coded session secret, permissive CORS) and offering short‑term fixes and longer‑term improvement recommendations.
